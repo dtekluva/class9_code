@@ -1,0 +1,13 @@
+The word is chairs
+Welcome to the Word Guess Game
+
+Running an get_guess function
+Guess a word: Words cannot be empty
+Running an get_guess function
+Guess a word: Words cannot be empty
+Running an get_guess function
+Guess a word: Words cannot be empty
+Running an get_guess function
+Guess a word: Wrong attempt, you have  4 attempts left
+Running an get_guess function
+Guess a word: 

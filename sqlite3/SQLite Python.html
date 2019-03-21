@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)https://www.tutorialspoint.com/sqlite/sqlite_python.htm -->
+<html style="" class=" js no-touch csstransforms3d csstransitions"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Basic -->
+
+<title>SQLite Python</title>
+<meta name="description" content="SQLite Python - Learn SQLite in simple and easy steps starting from basic to advanced concepts with examples including database programming clauses command functions administration queries and usage along with PHP, PERL, C, C++, JAVA, Python, SQLite concepts, Overview, Installation, Commands, Syntax, Data Type, CREATE, ATTACH, DETACH Database, CREATE Table, DROP Table, INSERT Query, SELECT Query, Operators, Expressions, WHERE Clause, AND and OR Operators, UPDATE, DELETE Query, LIKE, GLOB, LIMIT, ORDER BY, GROUP BY, HAVING Clause, DISTINCT Keyword, PRAGMA, Constraints, JOINS, UNION Clause, NULL Values, ALIAS Syntax, Triggers, Indexes, INDEXED BY Clause, ALTER TABLE, TRUNCATE TABLE Command, Views, Transactions, Subqueries, AUTOINCREMENT, Injection, EXPLAIN, VACUUM, Date and Time, Useful Functions.">
+<meta name="keywords" content="SQLite, Tutorial, Learning, PHP, PERL, C, C++, JAVA and Python Programming, Database, Clauses, Commands, Functions, Administration, Queries, Simple, Steps, Basic, Advanced, Concepts, Overview, Installation, Commands, Syntax, Data Type, CREATE, ATTACH, DETACH Database, CREATE Table, DROP Table, INSERT Query, SELECT Query, Operators, Expressions, WHERE Clause, AND and OR Operators, UPDATE, DELETE Query, LIKE, GLOB, LIMIT, ORDER BY, GROUP BY, HAVING Clause, DISTINCT Keyword, PRAGMA, Constraints, JOINS, UNION Clause, NULL Values, ALIAS Syntax, Triggers, Indexes, INDEXED BY Clause, ALTER TABLE, TRUNCATE TABLE Command, Views, Transactions, Subqueries, AUTOINCREMENT, Injection, EXPLAIN, VACUUM, Date and Time, Useful Functions.">
+<!--<base href="https://www.tutorialspoint.com/">--><base href=".">
+<link rel="shortcut icon" href="https://www.tutorialspoint.com/favicon.ico" type="image/x-icon">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="fb:app_id" content="471319149685276">
+<meta property="og:site_name" content="www.tutorialspoint.com">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="author" content="tutorialspoint.com">
+<script src="./SQLite Python_files/f(9).txt"></script><script src="./SQLite Python_files/ca-pub-7133395778201029.js.download"></script><script type="text/javascript" src="./SQLite Python_files/script-min-v4.js.download"></script>
+<link rel="stylesheet" href="./SQLite Python_files/style-min.css">
+<script>
+function openNav() {	
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("right_obs").style.display = "block";
+}
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("right_obs").style.display = "none";
+}
+function close_obs_sidenav(){
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("right_obs").style.display = "none";
+}
+</script>
+<!-- Head Libs -->
+<!--[if IE 8]>
+<link rel="stylesheet" type="text/css" href="/theme/css/ie8.css">
+<![endif]-->
+<style>
+select{ border:0 !important; outline: 1px inset black !important; outline-offset: -1px !important; }
+.btnsbmt{ background: #003b57 !important;}
+ul.nav-list.primary>li a.videolink{    background: none; margin: 0px; padding: 0px; border: 1px solid #d6d6d6;}
+div.feature-box div.feature-box-icon, .col-md-3 .course-box, li.heading, div.footer-copyright { background: #003b57 url(/images/pattern.png) repeat center center !important;}
+.sub-main-menu .sub-menuu div:hover, .sub-main-menu .viewall, header nav ul.nav-main li a:hover, button.btn-responsive-nav, header div.search button.btn-default { background: #003b57 !important;}
+.submenu-item{ border-bottom: 2px solid #003b57 !important; border-top: 2px solid #003b57 !important }
+.ace_scroller{overflow: auto!important;}
+a.demo{font-family: "Open Sans",Arial,sans-serif; background:#003b57; color:#fff; font-size:13px; padding:3px 10px; border:1px solid #d6d6d6; position:absolute; right:5px; margin:-6px 17px 0px 0px;}
+a.demo:hover{opacity:.8}
+</style>
+<script>
+$(document).ready(function() {
+  $('input[name="q"]').keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>
+<link rel="preload" href="./SQLite Python_files/f(10).txt" as="script"><script type="text/javascript" src="./SQLite Python_files/f(10).txt"></script><link rel="preload" href="./SQLite Python_files/f(11).txt" as="script"><script type="text/javascript" src="./SQLite Python_files/f(11).txt"></script><link rel="preload" href="https://pagead2.googlesyndication.com/pagead/js/r20181022/r20180604/show_ads_impl.js" as="script"></head>
+<body onload="prettyPrint()" style="">
+<div class="wrapLoader">
+   <div class="imgLoader">
+      <img src="./SQLite Python_files/loading-cg.gif" alt="" width="70" height="70">
+   </div>
+</div>
+<div id="right_obs" class="display-none" onclick="close_obs_sidenav()"></div>
+<header>
+   <div class="container">			
+      <h1 class="logo">
+      <a href="https://www.tutorialspoint.com/index.htm" title="tutorialspoint">
+      <img alt="tutorialspoint" src="./SQLite Python_files/logo.png">
+      </a>
+      </h1>			
+      <ul class="tp-inline-block pull-right" id="tp-head-icons">
+        <li>
+           <div class="tp-second-nav tp-display-none tp-pointer" onclick="openNav()">
+              <i class="fa fa-th-large fa-lg"></i>
+           </div>
+        </li>
+     </ul>
+     <button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse" id="pull" style="top: 8003.60009765625px!important"> <i class="icon icon-bars"></i> </button>
+      <nav>
+         <ul class="nav nav-pills nav-top">
+            <li><a href="https://www.tutorialspoint.com/about/about_careers.htm" style="background: #fffb09; font-weight: bold;"><i class="icon icon-suitcase"></i> Jobs</a></li>
+            <li> <a target="_blank" href="https://www.tutorialspoint.com/programming_examples/"><i class="fa fa-cubes"></i> &nbsp;Examples</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/whiteboard.htm"><img src="./SQLite Python_files/image-editor.png" alt="Whiteboard" title="Whiteboard"> &nbsp;Whiteboard</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/netmeeting.php"><i class="fa-camera"></i> &nbsp;Net Meeting</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/online_dev_tools.htm"> <i class="dev-tools-menu" style="opacity:.5"></i> Tools </a> </li>
+            <li> <a href="https://www.tutorialspoint.com/articles/index.php"><i class="icon icon-file-text-o"></i> &nbsp;Articles</a> </li>            
+            <li class="top-icons">
+              <ul class="social-icons">
+              <li class="facebook"><a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook">Facebook</a></li>
+              <li class="googleplus"><a href="https://plus.google.com/u/0/116678774017490391259/posts" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Google+">Google+</a></li>
+              <li class="twitter"><a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter">Twitter</a></li>
+              <li class="linkedin"><a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin">Linkedin</a></li>
+              <li class="youtube"><a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube">YouTube</a></li>
+              </ul>
+           </li>
+         </ul>
+      </nav>
+    </div>
+     <div class="sidenav" id="mySidenav">
+     <div class="navbar nav-main">
+      <div class="container">
+         <nav class="nav-main mega-menu">
+            <ul class="nav nav-pills nav-main" id="mainMenu">
+               <li class="dropdown no-sub-menu"> <a class="dropdown" href="https://www.tutorialspoint.com/index.htm"><i class="icon icon-home"></i> Home</a> </li>   
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-send"></i> Q/A </a> </li>
+               <li class="dropdown"><a class="dropdown" href="https://www.tutorialspoint.com/tutorialslibrary.htm"><span class="tut-lib"> Library </span></a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fa-toggle-right"></i> Videos </a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/tutor_connect/index.php"><i class="fa-user"> </i> Tutors</a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/codingground.htm"><i class="fa-code"></i> Coding Ground </a> </li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://store.tutorialspoint.com/"><i class="fa-usd"></i> Store </a> </li>
+               <li class="dropdown no-sub-menu">
+                  <div class="searchform-popup">
+                     <input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == &#39;Search your favorite tutorials...&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Search your favorite tutorials...&#39;;}" autocomplete="off" style="">
+                     <div class="magnifying-glass"><i class="icon-search"></i> Search </div>
+                 </div>
+               </li>
+            </ul>
+         </nav>
+        </div>
+      </div>	
+     </div>	
+   	
+</header>
+<div style="clear:both;"></div>
+<div role="main" class="main">
+<div class="container">
+<div class="row">
+<div class="col-md-2">
+<aside class="sidebar">
+<style>
+.ts{
+vertical-align:middle !important;
+text-align:center !important;   
+}
+</style>
+<div class="mini-logo">
+<img src="./SQLite Python_files/sqlite-mini-logo.jpg" alt="SQLite Tutorial">
+</div>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">SQLite Tutorial</li>
+<li><a href="https://www.tutorialspoint.com/sqlite/index.htm">SQLite - Home</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_overview.htm">SQLite - Overview</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_installation.htm">SQLite - Installation</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_commands.htm">SQLite - Commands</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_syntax.htm">SQLite - Syntax</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_data_types.htm">SQLite - Data Type</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_create_database.htm">SQLite - CREATE Database</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_attach_database.htm">SQLite - ATTACH Database</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_detach_database.htm">SQLite - DETACH Database</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_create_table.htm">SQLite - CREATE Table</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_drop_table.htm">SQLite - DROP Table</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_insert_query.htm">SQLite - INSERT Query</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_select_query.htm">SQLite - SELECT Query</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_operators.htm">SQLite - Operators</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_expressions.htm">SQLite - Expressions</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_where_clause.htm">SQLite - WHERE Clause</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_and_or_clauses.htm">SQLite - AND &amp; OR Clauses</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_update_query.htm">SQLite - UPDATE Query</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_delete_query.htm">SQLite - DELETE Query</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_like_clause.htm">SQLite - LIKE Clause</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_glob_clause.htm">SQLite - GLOB Clause</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_limit_clause.htm">SQLite - LIMIT Clause</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_order_by.htm">SQLite - ORDER By Clause</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_group_by.htm">SQLite - GROUP By Clause</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_having_clause.htm">SQLite - HAVING Clause</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_distinct_keyword.htm">SQLite - DISTINCT Keyword</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Advanced SQLite</li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_pragma.htm">SQLite - PRAGMA</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_constraints.htm">SQLite - Constraints</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_using_joins.htm">SQLite - JOINS</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_unions_clause.htm">SQLite - UNIONS Clause</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_null_values.htm">SQLite - NULL Values</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_alias_syntax.htm">SQLite - ALIAS Syntax</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_triggers.htm">SQLite - Triggers</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_indexes.htm">SQLite - Indexes</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_indexed_by.htm">SQLite - INDEXED By Clause</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_alter_command.htm">SQLite - ALTER Command</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_truncate_table.htm">SQLite - TRUNCATE Command</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_views.htm">SQLite - Views</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_transactions.htm">SQLite - Transactions</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_sub_queries.htm">SQLite - Subqueries</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_using_autoincrement.htm">SQLite - AUTOINCREMENT</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_injection.htm">SQLite - Injection</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_explain.htm">SQLite - EXPLAIN</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_vacuum.htm">SQLite - VACUUM</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_date_time.htm">SQLite - Date &amp; Time</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_useful_functions.htm">SQLite - Useful Functions</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">SQLite Interfaces</li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_c_cpp.htm">SQLite - C/C++</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_java.htm">SQLite - Java</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_php.htm">SQLite - PHP</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_perl.htm">SQLite - Perl</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_python.htm" style="background-color: rgb(214, 214, 214);">SQLite - Python</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">SQLite Useful Resources</li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_quick_guide.htm">SQLite - Quick Guide</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_useful_resources.htm">SQLite - Useful Resources</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/sqlite_discussion.htm">SQLite - Discussion</a></li>
+</ul>
+<ul class="nav nav-list primary push-bottom left-menu special">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="https://www.tutorialspoint.com/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</aside>
+</div>
+<!-- PRINTING STARTS HERE -->
+<div class="row">
+<div class="content">
+<div class="col-md-7 middle-col">
+<h1>SQLite - Python</h1>
+<hr>
+<div style="padding-bottom:5px;padding-left:10px;text-align: center;">Advertisements</div>
+<div style="text-align: center;">
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript" src="./SQLite Python_files/f(12).txt"> 
+</script><ins id="aswift_0_expand" style="display:inline-table;border:none;height:60px;margin:0;padding:0;position:relative;visibility:visible;width:468px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:60px;margin:0;padding:0;position:relative;visibility:visible;width:468px;background-color:transparent;"><iframe width="468" height="60" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;width:468px;height:60px;" src="./SQLite Python_files/saved_resource(5).html"></iframe></ins></ins>
+</div>
+<hr>
+<div class="pre-btn">
+<a href="https://www.tutorialspoint.com/sqlite/sqlite_perl.htm"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="https://www.tutorialspoint.com/sqlite/sqlite_quick_guide.htm">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<div class="clearer"></div>
+<hr>
+<p>In this chapter, you will learn how to use SQLite in Python programs.</p>
+<h2>Installation</h2>
+<p>SQLite3 can be integrated with Python using sqlite3 module, which was written by Gerhard Haring. It provides an SQL interface compliant with the DB-API 2.0 specification described by PEP 249. You do not need to install this module separately because it is shipped by default along with Python version 2.5.x onwards.</p>
+<p>To use sqlite3 module, you must first create a connection object that represents the database and then optionally you can create a cursor object, which will help you in executing all the SQL statements.</p>
+<h2>Python sqlite3 module APIs</h2>
+<p>Following are important sqlite3 module routines, which can suffice your requirement to work with SQLite database from your Python program. If you are looking for a more sophisticated application, then you can look into Python sqlite3 module's official documentation.</p>
+<table class="table table-bordered">
+<tbody><tr>
+<th style="width:5%">Sr.No.</th>
+<th style="text-align:center;">API &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>sqlite3.connect(database [,timeout ,other optional arguments])</b></p>
+<p>This API opens a connection to the SQLite database file. You can use ":memory:" to open a database connection to a database that resides in RAM instead of on disk. If database is opened successfully, it returns a connection object.</p>
+<p>When a database is accessed by multiple connections, and one of the processes modifies the database, the SQLite database is locked until that transaction is committed. The timeout parameter specifies how long the connection should wait for the lock to go away until raising an exception. The default for the timeout parameter is 5.0 (five seconds).</p>
+<p>If the given database name does not exist then this call will create the database. You can specify filename with the required path as well if you want to create a database anywhere else except in the current directory.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>connection.cursor([cursorClass])</b></p>
+<p>This routine creates a <b>cursor</b> which will be used throughout of your database programming with Python. This method accepts a single optional parameter cursorClass. If supplied, this must be a custom cursor class that extends sqlite3.Cursor.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>cursor.execute(sql [, optional parameters])</b></p>
+<p>This routine executes an SQL statement. The SQL statement may be parameterized (i. e. placeholders instead of SQL literals). The sqlite3 module supports two kinds of placeholders: question marks and named placeholders (named style).</p>
+<p><b>For example</b> − cursor.execute("insert into people values (?, ?)", (who, age))</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>connection.execute(sql [, optional parameters])</b></p>
+<p>This routine is a shortcut of the above execute method provided by the cursor object and it creates an intermediate cursor object by calling the cursor method, then calls the cursor's execute method with the parameters given.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>cursor.executemany(sql, seq_of_parameters)</b></p>
+<p>This routine executes an SQL command against all parameter sequences or mappings found in the sequence sql.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>connection.executemany(sql[, parameters])</b></p>
+<p>This routine is a shortcut that creates an intermediate cursor object by calling the cursor method, then calls the cursor.s executemany method with the parameters given.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><p><b>cursor.executescript(sql_script)</b></p>
+<p>This routine executes multiple SQL statements at once provided in the form of script. It issues a COMMIT statement first, then executes the SQL script it gets as a parameter. All the SQL statements should be separated by a semi colon (;).</p>
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><p><b>connection.executescript(sql_script)</b></p>
+<p>This routine is a shortcut that creates an intermediate cursor object by calling the cursor method, then calls the cursor's executescript method with the parameters given.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><p><b>connection.total_changes()</b></p>
+<p>This routine returns the total number of database rows that have been modified, inserted, or deleted since the database connection was opened.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><p><b>connection.commit()</b></p>
+<p>This method commits the current transaction. If you don't call this method, anything you did since the last call to commit() is not visible from other database connections.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><p><b>connection.rollback()</b></p>
+<p>This method rolls back any changes to the database since the last call to commit().</p>
+</td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><p><b>connection.close()</b></p>
+<p>This method closes the database connection. Note that this does not automatically call commit(). If you just close your database connection without calling commit() first, your changes will be lost!</p>
+</td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td><p><b>cursor.fetchone()</b></p>
+<p>This method fetches the next row of a query result set, returning a single sequence, or None when no more data is available.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">14</td>
+<td><p><b>cursor.fetchmany([size = cursor.arraysize])</b></p><p>This routine fetches the next set of rows of a query result, returning a list. An empty list is returned when no more rows are available. The method tries to fetch as many rows as indicated by the size parameter.</p></td>
+</tr>
+<tr>
+<td class="ts">15</td>
+<td><p><b>cursor.fetchall()</b></p>
+<p>This routine fetches all (remaining) rows of a query result, returning a list. An empty list is returned when no rows are available.</p></td>
+</tr>
+</tbody></table>
+<h2>Connect To Database</h2>
+<p>Following Python code shows how to connect to an existing database. If the database does not exist, then it will be created and finally a database object will be returned.</p>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="com">#!/usr/bin/python</span><span class="pln">
+
+</span><span class="kwd">import</span><span class="pln"> sqlite3
+
+conn </span><span class="pun">=</span><span class="pln"> sqlite3</span><span class="pun">.</span><span class="pln">connect</span><span class="pun">(</span><span class="str">'test.db'</span><span class="pun">)</span><span class="pln">
+
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"Opened database successfully"</span><span class="pun">;</span></pre>
+<p>Here, you can also supply database name as the special name <b>:memory:</b> to create a database in RAM. Now, let's run the above program to create our database <b>test.db</b> in the current directory. You can change your path as per your requirement. Keep the above code in sqlite.py file and execute it as shown below. If the database is successfully created, then it will display the following message.</p>
+<pre class="result notranslate">$chmod +x sqlite.py
+$./sqlite.py
+Open database successfully
+</pre>
+<h2>Create a Table</h2>
+<p>Following Python program will be used to create a table in the previously created database.</p>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="com">#!/usr/bin/python</span><span class="pln">
+
+</span><span class="kwd">import</span><span class="pln"> sqlite3
+
+conn </span><span class="pun">=</span><span class="pln"> sqlite3</span><span class="pun">.</span><span class="pln">connect</span><span class="pun">(</span><span class="str">'test.db'</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"Opened database successfully"</span><span class="pun">;</span><span class="pln">
+
+conn</span><span class="pun">.</span><span class="pln">execute</span><span class="pun">(</span><span class="str">'''CREATE TABLE COMPANY
+         (ID INT PRIMARY KEY     NOT NULL,
+         NAME           TEXT    NOT NULL,
+         AGE            INT     NOT NULL,
+         ADDRESS        CHAR(50),
+         SALARY         REAL);'''</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"Table created successfully"</span><span class="pun">;</span><span class="pln">
+
+conn</span><span class="pun">.</span><span class="pln">close</span><span class="pun">()</span></pre>
+<p>When the above program is executed, it will create the COMPANY table in your <b>test.db</b> and it will display the following messages −</p>
+<pre class="result notranslate">Opened database successfully
+Table created successfully
+</pre>
+<h2>INSERT Operation</h2>
+<p>Following Python program shows how to create records in the COMPANY table created in the above example.</p>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="com">#!/usr/bin/python</span><span class="pln">
+
+</span><span class="kwd">import</span><span class="pln"> sqlite3
+
+conn </span><span class="pun">=</span><span class="pln"> sqlite3</span><span class="pun">.</span><span class="pln">connect</span><span class="pun">(</span><span class="str">'test.db'</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"Opened database successfully"</span><span class="pun">;</span><span class="pln">
+
+conn</span><span class="pun">.</span><span class="pln">execute</span><span class="pun">(</span><span class="str">"INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) \
+      VALUES (1, 'Paul', 32, 'California', 20000.00 )"</span><span class="pun">);</span><span class="pln">
+
+conn</span><span class="pun">.</span><span class="pln">execute</span><span class="pun">(</span><span class="str">"INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) \
+      VALUES (2, 'Allen', 25, 'Texas', 15000.00 )"</span><span class="pun">);</span><span class="pln">
+
+conn</span><span class="pun">.</span><span class="pln">execute</span><span class="pun">(</span><span class="str">"INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) \
+      VALUES (3, 'Teddy', 23, 'Norway', 20000.00 )"</span><span class="pun">);</span><span class="pln">
+
+conn</span><span class="pun">.</span><span class="pln">execute</span><span class="pun">(</span><span class="str">"INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) \
+      VALUES (4, 'Mark', 25, 'Rich-Mond ', 65000.00 )"</span><span class="pun">);</span><span class="pln">
+
+conn</span><span class="pun">.</span><span class="pln">commit</span><span class="pun">()</span><span class="pln">
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"Records created successfully"</span><span class="pun">;</span><span class="pln">
+conn</span><span class="pun">.</span><span class="pln">close</span><span class="pun">()</span></pre>
+<p>When the above program is executed, it will create the given records in the COMPANY table and it will display the following two lines −</p>
+<pre class="result notranslate">Opened database successfully
+Records created successfully
+</pre>
+<h2>SELECT Operation</h2>
+<p>Following Python program shows how to fetch and display records from the COMPANY table created in the above example.</p>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="com">#!/usr/bin/python</span><span class="pln">
+
+</span><span class="kwd">import</span><span class="pln"> sqlite3
+
+conn </span><span class="pun">=</span><span class="pln"> sqlite3</span><span class="pun">.</span><span class="pln">connect</span><span class="pun">(</span><span class="str">'test.db'</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"Opened database successfully"</span><span class="pun">;</span><span class="pln">
+
+cursor </span><span class="pun">=</span><span class="pln"> conn</span><span class="pun">.</span><span class="pln">execute</span><span class="pun">(</span><span class="str">"SELECT id, name, address, salary from COMPANY"</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">for</span><span class="pln"> row </span><span class="kwd">in</span><span class="pln"> cursor</span><span class="pun">:</span><span class="pln">
+   </span><span class="kwd">print</span><span class="pln"> </span><span class="str">"ID = "</span><span class="pun">,</span><span class="pln"> row</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]</span><span class="pln">
+   </span><span class="kwd">print</span><span class="pln"> </span><span class="str">"NAME = "</span><span class="pun">,</span><span class="pln"> row</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pln">
+   </span><span class="kwd">print</span><span class="pln"> </span><span class="str">"ADDRESS = "</span><span class="pun">,</span><span class="pln"> row</span><span class="pun">[</span><span class="lit">2</span><span class="pun">]</span><span class="pln">
+   </span><span class="kwd">print</span><span class="pln"> </span><span class="str">"SALARY = "</span><span class="pun">,</span><span class="pln"> row</span><span class="pun">[</span><span class="lit">3</span><span class="pun">],</span><span class="pln"> </span><span class="str">"\n"</span><span class="pln">
+
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"Operation done successfully"</span><span class="pun">;</span><span class="pln">
+conn</span><span class="pun">.</span><span class="pln">close</span><span class="pun">()</span></pre>
+<p>When the above program is executed, it will produce the following result.</p>
+<pre class="result notranslate">Opened database successfully
+ID = 1
+NAME = Paul
+ADDRESS = California
+SALARY = 20000.0
+
+ID = 2
+NAME = Allen
+ADDRESS = Texas
+SALARY = 15000.0
+
+ID = 3
+NAME = Teddy
+ADDRESS = Norway
+SALARY = 20000.0
+
+ID = 4
+NAME = Mark
+ADDRESS = Rich-Mond
+SALARY = 65000.0
+
+Operation done successfully
+</pre>
+<h2>UPDATE Operation</h2>
+<p>Following Python code shows how to use UPDATE statement to update any record and then fetch and display the updated records from the COMPANY table.</p>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="com">#!/usr/bin/python</span><span class="pln">
+
+</span><span class="kwd">import</span><span class="pln"> sqlite3
+
+conn </span><span class="pun">=</span><span class="pln"> sqlite3</span><span class="pun">.</span><span class="pln">connect</span><span class="pun">(</span><span class="str">'test.db'</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"Opened database successfully"</span><span class="pun">;</span><span class="pln">
+
+conn</span><span class="pun">.</span><span class="pln">execute</span><span class="pun">(</span><span class="str">"UPDATE COMPANY set SALARY = 25000.00 where ID = 1"</span><span class="pun">)</span><span class="pln">
+conn</span><span class="pun">.</span><span class="pln">commit
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"Total number of rows updated :"</span><span class="pun">,</span><span class="pln"> conn</span><span class="pun">.</span><span class="pln">total_changes
+
+cursor </span><span class="pun">=</span><span class="pln"> conn</span><span class="pun">.</span><span class="pln">execute</span><span class="pun">(</span><span class="str">"SELECT id, name, address, salary from COMPANY"</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">for</span><span class="pln"> row </span><span class="kwd">in</span><span class="pln"> cursor</span><span class="pun">:</span><span class="pln">
+   </span><span class="kwd">print</span><span class="pln"> </span><span class="str">"ID = "</span><span class="pun">,</span><span class="pln"> row</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]</span><span class="pln">
+   </span><span class="kwd">print</span><span class="pln"> </span><span class="str">"NAME = "</span><span class="pun">,</span><span class="pln"> row</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pln">
+   </span><span class="kwd">print</span><span class="pln"> </span><span class="str">"ADDRESS = "</span><span class="pun">,</span><span class="pln"> row</span><span class="pun">[</span><span class="lit">2</span><span class="pun">]</span><span class="pln">
+   </span><span class="kwd">print</span><span class="pln"> </span><span class="str">"SALARY = "</span><span class="pun">,</span><span class="pln"> row</span><span class="pun">[</span><span class="lit">3</span><span class="pun">],</span><span class="pln"> </span><span class="str">"\n"</span><span class="pln">
+
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"Operation done successfully"</span><span class="pun">;</span><span class="pln">
+conn</span><span class="pun">.</span><span class="pln">close</span><span class="pun">()</span></pre>
+<p>When the above program is executed, it will produce the following result.</p>
+<pre class="result notranslate">Opened database successfully
+Total number of rows updated : 1
+ID = 1
+NAME = Paul
+ADDRESS = California
+SALARY = 25000.0
+
+ID = 2
+NAME = Allen
+ADDRESS = Texas
+SALARY = 15000.0
+
+ID = 3
+NAME = Teddy
+ADDRESS = Norway
+SALARY = 20000.0
+
+ID = 4
+NAME = Mark
+ADDRESS = Rich-Mond
+SALARY = 65000.0
+
+Operation done successfully
+</pre>
+<h2>DELETE Operation</h2>
+<p>Following Python code shows how to use DELETE statement to delete any record and then fetch and display the remaining records from the COMPANY table.</p>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="com">#!/usr/bin/python</span><span class="pln">
+
+</span><span class="kwd">import</span><span class="pln"> sqlite3
+
+conn </span><span class="pun">=</span><span class="pln"> sqlite3</span><span class="pun">.</span><span class="pln">connect</span><span class="pun">(</span><span class="str">'test.db'</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"Opened database successfully"</span><span class="pun">;</span><span class="pln">
+
+conn</span><span class="pun">.</span><span class="pln">execute</span><span class="pun">(</span><span class="str">"DELETE from COMPANY where ID = 2;"</span><span class="pun">)</span><span class="pln">
+conn</span><span class="pun">.</span><span class="pln">commit</span><span class="pun">()</span><span class="pln">
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"Total number of rows deleted :"</span><span class="pun">,</span><span class="pln"> conn</span><span class="pun">.</span><span class="pln">total_changes
+
+cursor </span><span class="pun">=</span><span class="pln"> conn</span><span class="pun">.</span><span class="pln">execute</span><span class="pun">(</span><span class="str">"SELECT id, name, address, salary from COMPANY"</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">for</span><span class="pln"> row </span><span class="kwd">in</span><span class="pln"> cursor</span><span class="pun">:</span><span class="pln">
+   </span><span class="kwd">print</span><span class="pln"> </span><span class="str">"ID = "</span><span class="pun">,</span><span class="pln"> row</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]</span><span class="pln">
+   </span><span class="kwd">print</span><span class="pln"> </span><span class="str">"NAME = "</span><span class="pun">,</span><span class="pln"> row</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pln">
+   </span><span class="kwd">print</span><span class="pln"> </span><span class="str">"ADDRESS = "</span><span class="pun">,</span><span class="pln"> row</span><span class="pun">[</span><span class="lit">2</span><span class="pun">]</span><span class="pln">
+   </span><span class="kwd">print</span><span class="pln"> </span><span class="str">"SALARY = "</span><span class="pun">,</span><span class="pln"> row</span><span class="pun">[</span><span class="lit">3</span><span class="pun">],</span><span class="pln"> </span><span class="str">"\n"</span><span class="pln">
+
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"Operation done successfully"</span><span class="pun">;</span><span class="pln">
+conn</span><span class="pun">.</span><span class="pln">close</span><span class="pun">()</span></pre>
+<p>When the above program is executed, it will produce the following result.</p>
+<pre class="result notranslate">Opened database successfully
+Total number of rows deleted : 1
+ID = 1
+NAME = Paul
+ADDRESS = California
+SALARY = 20000.0
+
+ID = 3
+NAME = Teddy
+ADDRESS = Norway
+SALARY = 20000.0
+
+ID = 4
+NAME = Mark
+ADDRESS = Rich-Mond
+SALARY = 65000.0
+
+Operation done successfully
+</pre>
+<hr>
+<div class="pre-btn">
+<a href="https://www.tutorialspoint.com/sqlite/sqlite_perl.htm"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="print-btn center">
+<a href="https://www.tutorialspoint.com/cgi-bin/printpage.cgi" target="_blank"><i class="icon icon-print big-font"></i> Print</a>
+</div>
+<div class="nxt-btn">
+<a href="https://www.tutorialspoint.com/sqlite/sqlite_quick_guide.htm">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<hr>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div class="bottomadtag">Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="./SQLite Python_files/f(12).txt">
+</script><ins id="aswift_1_expand" style="display:inline-table;border:none;height:400px;margin:0;padding:0;position:relative;visibility:visible;width:580px;background-color:transparent;"><ins id="aswift_1_anchor" style="display:block;border:none;height:400px;margin:0;padding:0;position:relative;visibility:visible;width:580px;background-color:transparent;"><iframe width="580" height="400" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;width:580px;height:400px;" src="./SQLite Python_files/saved_resource(6).html"></iframe></ins></ins>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-3" id="rightbar">
+<div class="simple-ad">
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://www.facebook.com/sharer.php?u=&#39; + &#39;https://www.tutorialspoint.com/sqlite/sqlite_python.htm&#39;,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./SQLite Python_files/facebookIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://twitter.com/share?url=&#39; + &#39;https://www.tutorialspoint.com/sqlite/sqlite_python.htm&#39;,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./SQLite Python_files/twitterIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://www.linkedin.com/cws/share?url=&#39; + &#39;https://www.tutorialspoint.com/sqlite/sqlite_python.htm&amp;title=&#39;+ document.title,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./SQLite Python_files/linkedinIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://plus.google.com/share?url=https://www.tutorialspoint.com/sqlite/sqlite_python.htm&#39;,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./SQLite Python_files/googlePlusIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://www.stumbleupon.com/submit?url=https://www.tutorialspoint.com/sqlite/sqlite_python.htm&amp;title=&#39;+ document.title,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./SQLite Python_files/StumbleUponIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://reddit.com/submit?url=https://www.tutorialspoint.com/sqlite/sqlite_python.htm&amp;title=&#39;+ document.title,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=656,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./SQLite Python_files/reddit.jpg" alt="img">
+</a>
+</div>
+<div class="rightgooglead">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="./SQLite Python_files/f(12).txt">
+</script><ins id="aswift_2_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:285px;background-color:transparent;"><ins id="aswift_2_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:285px;background-color:transparent;"><iframe width="285" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;width:285px;height:250px;" src="./SQLite Python_files/saved_resource(7).html"></iframe></ins></ins>
+</div>
+<div class="rightgooglead">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 300;
+google_ad_height = 600;
+google_ad_format = "300x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="./SQLite Python_files/f(12).txt">
+</script><ins id="aswift_3_expand" style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:285px;background-color:transparent;"><ins id="aswift_3_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:285px;background-color:transparent;"><iframe width="285" height="600" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_3" name="aswift_3" style="left:0;position:absolute;top:0;width:285px;height:600px;" src="./SQLite Python_files/saved_resource(8).html"></iframe></ins></ins>
+</div>
+<div class="rightgooglead">
+<script><!--
+google_ad_client = "ca-pub-2537027957187252";
+/* Right Side Ad */
+google_ad_slot = "right_side_ad";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script src="./SQLite Python_files/f(12).txt">
+</script><ins id="aswift_4_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:285px;background-color:transparent;"><ins id="aswift_4_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:285px;background-color:transparent;"><iframe width="285" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_4" name="aswift_4" style="left:0;position:absolute;top:0;width:285px;height:250px;" src="./SQLite Python_files/saved_resource(9).html"></iframe></ins></ins>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="footer-copyright">
+<div class="container">
+<div class="row">
+<div class="col-md-1">
+<a href="https://www.tutorialspoint.com/index.htm" class="logo"> <img alt="Tutorials Point" class="img-responsive" src="./SQLite Python_files/logo-footer.png"> </a>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <nav id="sub-menu">
+      <ul>
+         <li><a href="https://www.tutorialspoint.com/about/faq.htm">FAQ's</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/about_privacy.htm#cookies">Cookies Policy</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/contact_us.htm">Contact</a></li>
+      </ul>
+   </nav>
+</div>
+<div class="col-md-3 col-sm-12 col-xs-12">
+<p>© Copyright 2018. All Rights Reserved.</p>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <div class="news-group">
+      <input type="text" class="form-control-foot search" name="textemail" id="textemail" autocomplete="off" placeholder="Enter email for newsletter" onfocus="if (this.value == &#39;Enter email for newsletter...&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Enter email for newsletter...&#39;;}">
+      <span class="input-group-btn"> <button class="btn btn-default btn-footer" id="btnemail" type="submit" onclick="javascript:void(0);">go</button> </span>
+      <div id="newsresponse"></div>
+   </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Libs -->
+<script src="./SQLite Python_files/custom-min.js.download"></script><a class="scroll-to-top visible" href="https://www.tutorialspoint.com/#" id="scrollToTop"><i class="icon icon-chevron-up icon-white"></i></a>
+<script src="./SQLite Python_files/urchin.js.download">
+</script>
+<script>
+_uacct = "UA-232293-6";
+urchinTracker();
+$('.pg-icon').click(function(){
+   $('.wrapLoader').show();
+});
+</script>
+
+
+
+<div class="autocomplete-suggestions " style="top: 7923.6px; left: 0px; width: 8px;"></div><iframe id="google_osd_static_frame_9332268476461" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;" src="./SQLite Python_files/saved_resource(10).html"></iframe></body><iframe id="google_shimpl" style="display: none;" src="./SQLite Python_files/saved_resource(11).html"></iframe></html>

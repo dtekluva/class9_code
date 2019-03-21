@@ -1,0 +1,41 @@
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */ 
+
+if (lead_quizzes.afp_nonce) { 
+	var leadQuizId = lead_quizzes.leadQuizId;
+
+    window._LQ_ = window._LQ_ || {};
+    (function () {
+        var dr = document.createElement('script');
+        dr.type = 'text/javascript';
+        dr.async = true;
+        dr.src = 'https://quiz.leadquizzes.com/js/embedded-modal-ext.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dr);
+    })();
+
+    $(document).ready(function () {
+        if (leadQuizId != null) {
+            initLeadQuiz();
+        }
+
+    });
+
+    function initLeadQuiz() {
+        if (leadQuizId != null && typeof lqQuizModal == 'function') {
+            lqQuizModal(window, document, {quizId: leadQuizId, baseUrl: 'https://quiz.leadquizzes.com/', trigger: 'exit'}, _LQ_);
+        } else {
+        	setTimeout(function(){
+		        initLeadQuiz();
+		    }, 5000);
+        }
+    }
+
+}
+
+
+// wp_add_inline_script( 'leadquizzes', 'window._LQ_ = window._LQ_ || {};', 'before' );
+// wp_enqueue_script('leadquizzes', 'https://quiz.leadquizzes.com/js/embedded-modal-ext.js#asyncload', false, false);
+// wp_add_inline_script( 'leadquizzes', "lqQuizModal(window, document, {quizId:'".$lead_quiz_id."',baseUrl:'https://quiz.leadquizzes.com/',trigger:'exit'}, _LQ_);", 'after' );

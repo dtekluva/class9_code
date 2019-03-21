@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0047)https://docs.python-guide.org/scenarios/scrape/ -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./HTML Scraping — The Hitchhiker&#39;s Guide to Python_files/f.txt"></script><script src="./HTML Scraping — The Hitchhiker&#39;s Guide to Python_files/pubads_impl_rendering_273.js.download"></script><script async="" src="./HTML Scraping — The Hitchhiker&#39;s Guide to Python_files/analytics.js.download"></script><script type="text/javascript" async="" src="./HTML Scraping — The Hitchhiker&#39;s Guide to Python_files/prebid_v1.js.download"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    
+    <title>HTML Scraping — The Hitchhiker's Guide to Python</title>
+    <link rel="stylesheet" type="text/css" href="./HTML Scraping — The Hitchhiker&#39;s Guide to Python_files/ac5dab34117b78f6e32b6931d79662a7066dfc8f.css">
+    
+    <script async="" type="text/javascript" src="./HTML Scraping — The Hitchhiker&#39;s Guide to Python_files/gpt.js.download"></script><script type="text/javascript" id="documentation_options" data-url_root="../../" src="./HTML Scraping — The Hitchhiker&#39;s Guide to Python_files/documentation_options.js.download"></script>
+    <script type="text/javascript" src="./HTML Scraping — The Hitchhiker&#39;s Guide to Python_files/3ff29e285c6a8fb3cdf7d41dc7d6c9cff6fc0be4.js.download"></script>
+    <link rel="index" title="Index" href="https://docs.python-guide.org/genindex/">
+    <link rel="search" title="Search" href="https://docs.python-guide.org/search/">
+    <link rel="next" title="Command-line Applications" href="https://docs.python-guide.org/scenarios/cli/">
+    <link rel="prev" title="Web Applications &amp; Frameworks" href="https://docs.python-guide.org/scenarios/web/">
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    div.body {
+      min-width: initial;
+      max-width: initial;
+    }
+  </style>
+
+  
+  <link rel="canonical" href="https://docs.python-guide.org/scenarios/scrape/">
+  <meta property="og:url" content="https://docs.python-guide.org/scenarios/scrape">
+  
+
+  <link rel="icon" type="image/png" href="https://media.readthedocs.org/images/favicon.png">
+
+  <meta name="google-site-verification" content="013PxE2_8KX9jdUSC5gr8QsfdxTXr1mFgmD9zplp5II">
+
+  <meta name="twitter:card" content="summary">
+  <meta property="twitter:image" content="https://docs.python-guide.org/_static/social-card.jpg">
+  <meta property="og:image" content="https://docs.python-guide.org/_static/social-card.jpg">
+  <meta property="og:title" content="HTML Scraping — The Hitchhiker&#39;s Guide to Python">
+  <meta property="og:type" content="article">
+  
+  <meta property="og:description" content="">
+
+  <script>window.rp_prop_id = '29182759436';</script>
+  <script src="./HTML Scraping — The Hitchhiker&#39;s Guide to Python_files/tag.js.download" async=""></script>
+
+  <script src="./HTML Scraping — The Hitchhiker&#39;s Guide to Python_files/2169.js.download"></script><style type="text/css">.waldo-sticky-footer{position: fixed; width: 100%; bottom: 0px; left: 0px; text-align: center; z-index: 9995;}.waldo-sticky-footer iframe {margin-left: auto;margin-right: auto;}.waldo-sticky-sidebar{position: fixed; width: 100%; top: 10px;z-index: 90}.waldo-overlay{position: fixed;height: 100%;width: 100%;top: 0;left: 0;z-index: 105;background: rgba(0,0,0,0.7);}#waldo-counter {position: absolute;bottom: 0;right: 0;color: #fff;font-size: 30px;padding: 15px;}.waldo-bfleft {position: fixed; left: 0; top: 10px;z-index:101;}.waldo-bfright {position: fixed; right: 0; top: 10px;z-index:101;}#waldo-close-button a {border: 1px solid rgba(0,0,0,.35);padding: 3px;font-size: 12px;color: #fff;font-weight: bold;background-color: #777;}</style><script type="text/javascript">googletag.cmd.push(function() {gptAdSlots[2171] = googletag.defineSlot('/124067137/python-guide728x90FS_1', [[728, 90], [300, 250]], 'waldo-tag-2171').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[728, 90], [300, 250]]).addSize([768, 0], [[300, 250]]).addSize([0, 0], [[300, 250]]).build()).addService(googletag.pubads()).setCollapseEmptyDiv(true,true);gptAdSlots[2950] = googletag.defineSlot('/8491498/python-guide728x90FS_1_Universal_Passback_5bc8078f49a25', [[728, 90], [300, 250]], 'waldo-tag-2950').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[728, 90]]).addSize([768, 0], [[300, 250]]).addSize([0, 0], [[300, 250]]).build()).addService(googletag.pubads());googletag.pubads().enableSingleRequest();googletag.enableServices();googletag.pubads().addEventListener('impressionViewable', function(event) {hb_refresh(event); hb_sroll_pause(event);});googletag.pubads().addEventListener('slotRenderEnded', function(event) {waldoAddCloseBtn(event); waldoPassbackInit(event);waldoInterstitialInit(event);})});</script>
+
+  
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37242602-11', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+  <link rel="preload" href="./HTML Scraping — The Hitchhiker&#39;s Guide to Python_files/f(1).txt" as="script"><script type="text/javascript" src="./HTML Scraping — The Hitchhiker&#39;s Guide to Python_files/f(1).txt"></script><link rel="preload" href="./HTML Scraping — The Hitchhiker&#39;s Guide to Python_files/f(2).txt" as="script"><script type="text/javascript" src="./HTML Scraping — The Hitchhiker&#39;s Guide to Python_files/f(2).txt"></script><script src="./HTML Scraping — The Hitchhiker&#39;s Guide to Python_files/pubads_impl_273.js.download" async=""></script><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-30/html/container.html"></head><body>
+
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            <div style="display:block;position:relative; margin-bottom: 1em;">
+              <div style="display:block;width:100%;padding-top:12.5%;"></div>
+              <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"><a href="https://srv.realpython.net/click/53740567618/?c=44675371757&amp;p=29182759436&amp;r=36892" rel="nofollow" target="_blank"><img src="./HTML Scraping — The Hitchhiker&#39;s Guide to Python_files/32dc2b8267d0b6061434a93732943fa5" style="max-width: 100%; max-height: 100%; width: 100%;"></a></div>
+            </div>
+            
+  <div class="section" id="html-scraping">
+<h1>HTML Scraping<a class="headerlink" href="https://docs.python-guide.org/scenarios/scrape/#html-scraping" title="Permalink to this headline">¶</a></h1>
+<img alt="https://d33wubrfki0l68.cloudfront.net/29e7d39801e58d657437f7c678c6519b087c3b23/e6d19/_images/34268661876_442428e122_k_d.jpg" src="./HTML Scraping — The Hitchhiker&#39;s Guide to Python_files/34268661876_442428e122_k_d.jpg">
+<div class="section" id="web-scraping">
+<h2>Web Scraping<a class="headerlink" href="https://docs.python-guide.org/scenarios/scrape/#web-scraping" title="Permalink to this headline">¶</a></h2>
+<p>Web sites are written using HTML, which means that each web page is a
+structured document. Sometimes it would be great to obtain some data from
+them and preserve the structure while we’re at it. Web sites don’t always
+provide their data in comfortable formats such as <code class="docutils literal notranslate"><span class="pre">csv</span></code> or <code class="docutils literal notranslate"><span class="pre">json</span></code>.</p>
+<p>This is where web scraping comes in. Web scraping is the practice of using a
+computer program to sift through a web page and gather the data that you need
+in a format most useful to you while at the same time preserving the structure
+of the data.</p>
+</div>
+<div class="section" id="lxml-and-requests">
+<h2>lxml and Requests<a class="headerlink" href="https://docs.python-guide.org/scenarios/scrape/#lxml-and-requests" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://lxml.de/">lxml</a> is a pretty extensive library written for parsing
+XML and HTML documents very quickly, even handling messed up tags in the
+process. We will also be using the
+<a class="reference external" href="http://docs.python-requests.org/en/latest/">Requests</a> module instead of the
+already built-in urllib2 module due to improvements in speed and readability.
+You can easily install both using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">lxml</span></code> and
+<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">requests</span></code>.</p>
+<p>Let’s start with the imports:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+</pre></div>
+</div>
+<p>Next we will use <code class="docutils literal notranslate"><span class="pre">requests.get</span></code> to retrieve the web page with our data,
+parse it using the <code class="docutils literal notranslate"><span class="pre">html</span></code> module and save the results in <code class="docutils literal notranslate"><span class="pre">tree</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'http://econpy.pythonanywhere.com/ex/001.html'</span><span class="p">)</span>
+<span class="n">tree</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>(We need to use <code class="docutils literal notranslate"><span class="pre">page.content</span></code> rather than <code class="docutils literal notranslate"><span class="pre">page.text</span></code> because
+<code class="docutils literal notranslate"><span class="pre">html.fromstring</span></code> implicitly expects <code class="docutils literal notranslate"><span class="pre">bytes</span></code> as input.)</p>
+<p><code class="docutils literal notranslate"><span class="pre">tree</span></code> now contains the whole HTML file in a nice tree structure which
+we can go over two different ways: XPath and CSSSelect. In this example, we
+will focus on the former.</p>
+<p>XPath is a way of locating information in structured documents such as
+HTML or XML documents. A good introduction to XPath is on
+<a class="reference external" href="http://www.w3schools.com/xml/xpath_intro.asp">W3Schools</a> .</p>
+<p>There are also various tools for obtaining the XPath of elements such as
+FireBug for Firefox or the Chrome Inspector. If you’re using Chrome, you
+can right click an element, choose ‘Inspect element’, highlight the code,
+right click again and choose ‘Copy XPath’.</p>
+<p>After a quick analysis, we see that in our page the data is contained in
+two elements - one is a div with title ‘buyer-name’ and the other is a
+span with class ‘item-price’:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">title</span><span class="o">=</span><span class="s">"buyer-name"</span><span class="p">&gt;</span>Carson Busses<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">"item-price"</span><span class="p">&gt;</span>$29.95<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Knowing this we can create the correct XPath query and use the lxml
+<code class="docutils literal notranslate"><span class="pre">xpath</span></code> function like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#This will create a list of buyers:</span>
+<span class="n">buyers</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">'//div[@title="buyer-name"]/text()'</span><span class="p">)</span>
+<span class="c1">#This will create a list of prices</span>
+<span class="n">prices</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">'//span[@class="item-price"]/text()'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Let’s see what we got exactly:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span> <span class="s1">'Buyers: '</span><span class="p">,</span> <span class="n">buyers</span>
+<span class="k">print</span> <span class="s1">'Prices: '</span><span class="p">,</span> <span class="n">prices</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Buyers</span><span class="p">:</span>  <span class="p">[</span><span class="s1">'Carson Busses'</span><span class="p">,</span> <span class="s1">'Earl E. Byrd'</span><span class="p">,</span> <span class="s1">'Patty Cakes'</span><span class="p">,</span>
+<span class="s1">'Derri Anne Connecticut'</span><span class="p">,</span> <span class="s1">'Moe Dess'</span><span class="p">,</span> <span class="s1">'Leda Doggslife'</span><span class="p">,</span> <span class="s1">'Dan Druff'</span><span class="p">,</span>
+<span class="s1">'Al Fresco'</span><span class="p">,</span> <span class="s1">'Ido Hoe'</span><span class="p">,</span> <span class="s1">'Howie Kisses'</span><span class="p">,</span> <span class="s1">'Len Lease'</span><span class="p">,</span> <span class="s1">'Phil Meup'</span><span class="p">,</span>
+<span class="s1">'Ira Pent'</span><span class="p">,</span> <span class="s1">'Ben D. Rules'</span><span class="p">,</span> <span class="s1">'Ave Sectomy'</span><span class="p">,</span> <span class="s1">'Gary Shattire'</span><span class="p">,</span>
+<span class="s1">'Bobbi Soks'</span><span class="p">,</span> <span class="s1">'Sheila Takya'</span><span class="p">,</span> <span class="s1">'Rose Tattoo'</span><span class="p">,</span> <span class="s1">'Moe Tell'</span><span class="p">]</span>
+
+<span class="n">Prices</span><span class="p">:</span>  <span class="p">[</span><span class="s1">'$29.95'</span><span class="p">,</span> <span class="s1">'$8.37'</span><span class="p">,</span> <span class="s1">'$15.26'</span><span class="p">,</span> <span class="s1">'$19.25'</span><span class="p">,</span> <span class="s1">'$19.25'</span><span class="p">,</span>
+<span class="s1">'$13.99'</span><span class="p">,</span> <span class="s1">'$31.57'</span><span class="p">,</span> <span class="s1">'$8.49'</span><span class="p">,</span> <span class="s1">'$14.47'</span><span class="p">,</span> <span class="s1">'$15.86'</span><span class="p">,</span> <span class="s1">'$11.11'</span><span class="p">,</span>
+<span class="s1">'$15.98'</span><span class="p">,</span> <span class="s1">'$16.27'</span><span class="p">,</span> <span class="s1">'$7.50'</span><span class="p">,</span> <span class="s1">'$50.85'</span><span class="p">,</span> <span class="s1">'$14.26'</span><span class="p">,</span> <span class="s1">'$5.68'</span><span class="p">,</span>
+<span class="s1">'$15.00'</span><span class="p">,</span> <span class="s1">'$114.07'</span><span class="p">,</span> <span class="s1">'$10.09'</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Congratulations! We have successfully scraped all the data we wanted from
+a web page using lxml and Requests. We have it stored in memory as two
+lists. Now we can do all sorts of cool stuff with it: we can analyze it
+using Python or we can save it to a file and share it with the world.</p>
+<p>Some more cool ideas to think about are modifying this script to iterate
+through the rest of the pages of this example dataset, or rewriting this
+application to use threads for improved speed.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="https://docs.python-guide.org/">
+    <img class="logo" src="./HTML Scraping — The Hitchhiker&#39;s Guide to Python_files/python-guide-logo.png" title="The Hitchhiker&#39;s Guide to Python">
+  </a>
+</p>
+
+<p style="margin-left:auto; margin-right: auto;"><iframe src="./HTML Scraping — The Hitchhiker&#39;s Guide to Python_files/github-btn.html" allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe></p>
+
+<p>
+  This opinionated guide exists to provide both novice and expert Python developers a best practice handbook to the installation, configuration, and usage of Python on a daily basis.
+</p>
+
+<div style="display:block;position:relative;margin: 1em 0 1em 0;">
+  <div style="display:block;width:100%;padding-top:100%;"></div>
+  <div class="rpad" data-unit="1x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"><a href="https://srv.realpython.net/click/29603925736/?c=44675371757&amp;p=29182759436&amp;r=44864" rel="nofollow" target="_blank"><img src="./HTML Scraping — The Hitchhiker&#39;s Guide to Python_files/0dc41981100adea3cda89d588dbec193" style="max-width: 100%; max-height: 100%; width: 100%;"></a></div>
+</div>
+
+<h3>O'Reilly Book</h3>
+
+<p>This guide is now available in tangible book form!</p>
+
+<p><a href="https://docs.python-guide.org/guide-book" target="_blank"><img style="max-width: 100%; text-align: center;" src="./HTML Scraping — The Hitchhiker&#39;s Guide to Python_files/guide-book-cover.jpg" alt="Python Guide Book Cover"></a></p>
+
+<p>All proceeds are being directly donated to the <a href="https://djangogirls.org/">DjangoGirls</a> organization.</p>
+
+<h3>Translations</h3>
+<ul>
+  <li><a href="https://docs.python-guide.org/">English</a></li>
+  <li><a href="https://python-guide-fr.readthedocs.io/fr/latest/">French</a></li>
+  <li><a href="https://pythonguidecn.readthedocs.io/zh/latest/">Chinese</a></li>
+  <li><a href="http://python-guideja.readthedocs.io/ja/latest/">Japanese</a></li>
+  <li><a href="https://python-guide-kr.readthedocs.io/ko/latest/">Korean</a></li>
+  <li><a href="http://python-guide-fil.readthedocs.io/en/latest/">Filipino</a></li>
+  <li><a href="http://python-guide-pt-br.readthedocs.io/pt_BR/latest/">Brazilian Portuguese</a></li>
+</ul>
+  <h3><a href="https://docs.python-guide.org/">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="https://docs.python-guide.org/scenarios/scrape/#">HTML Scraping</a><ul>
+<li><a class="reference internal" href="https://docs.python-guide.org/scenarios/scrape/#web-scraping">Web Scraping</a></li>
+<li><a class="reference internal" href="https://docs.python-guide.org/scenarios/scrape/#lxml-and-requests">lxml and Requests</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="https://docs.python-guide.org/">Documentation overview</a><ul>
+      <li>Previous: <a href="https://docs.python-guide.org/scenarios/web/" title="previous chapter">Web Applications &amp; Frameworks</a></li>
+      <li>Next: <a href="https://docs.python-guide.org/scenarios/cli/" title="next chapter">Command-line Applications</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://docs.python-guide.org/search/" method="get">
+      <input type="text" name="q">
+      <input type="submit" value="Go">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><!-- Alabaster (krTheme++) Hacks -->
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<div class="footer" style="">
+  <div id="waldo-tag-2950" data-processed="true" data-google-query-id="CKf8vcW4uN4CFU2F7QodXOoOIA"><div id="google_ads_iframe_/8491498/python-guide728x90FS_1_Universal_Passback_5bc8078f49a25_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/8491498/python-guide728x90FS_1_Universal_Passback_5bc8078f49a25_0" title="3rd party ad content" name="google_ads_iframe_/8491498/python-guide728x90FS_1_Universal_Passback_5bc8078f49a25_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" data-load-complete="true" data-google-container-id="d" src="./HTML Scraping — The Hitchhiker&#39;s Guide to Python_files/saved_resource.html"></iframe></div></div><div style="text-align: center; display: none;" id="waldo-tag-2171" data-processed="true" data-google-query-id="CL_YmMW4uN4CFRiz7QodXz4MhA"></div>
+  <p>©2011–2018 <a href="http://kennethreitz.com/pages/open-projects.html">Kenneth Reitz</a> &amp; <a href="https://realpython.com/">Real Python</a>. <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">CC BY-NC-SA 3.0</a></p>
+</div>
+
+  
+<iframe id="google_osd_static_frame_7601539582869" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;" src="./HTML Scraping — The Hitchhiker&#39;s Guide to Python_files/saved_resource(1).html"></iframe></body></html>
